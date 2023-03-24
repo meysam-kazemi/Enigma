@@ -22,13 +22,13 @@ function enigma(text,r1,r2,r3)
     res = ""
     for t in text
         character = rotor(t,r1)
-        character = rotor(t,r2)
-        character = rotor(t,r3)
-        index = findfirst(t,alphabet) # inverse
+        character = rotor(character,r2)
+        character = rotor(character,r3)
+        index = findfirst(character,alphabet) # inverse
         character = alphabet[end-index+1]
-        character = rotor!(t,r3)
-        character = rotor!(t,r2)
-        character = rotor!(t,r1)
+        character = rotor!(character,r3)
+        character = rotor!(character,r2)
+        character = rotor!(character,r1)
         res *= character
     end
     return res
