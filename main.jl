@@ -1,55 +1,50 @@
 using Shuffle
+run(`clear`)
 alphabet = "abcdefghijklmnopqrstuvwxyz"
 length(alphabet)
 
-r1 = shuffle(alphabet)
-r2 = shuffle(alphabet)
-r3 = shuffle(alphabet)
+r1 = join(shuffle(alphabet),"") # first rotor
+r2 = join(shuffle(alphabet),"") # second rotor
+r3 = join(shuffle(alphabet),"") # 3th rotor
 
 
-function rotor(text,r)
+function rotor(t,r) # apply rotor
+    index = findfirst(t,alphabet)
+    return r[index]
+end
+
+function rotor!(t,r) # inverse rotor
+    index = findfirst(t,r)
+    return alphabet[index]
+end
+
+function enigma(text,r1,r2,r3)
     res = ""
-    splited_list  = split(text,"")
-    for i in splited_list
-        index = findfirst(i,alphabet)
-        res *= r[index]
+    for t in text
+        character = rotor(t,r1)
+        character = rotor(t,r2)
+        character = rotor(t,r3)
+        index = findfirst(t,alphabet) # inverse
+        character = alphabet[end-index+1]
+        character = rotor!(t,r3)
+        character = rotor!(t,r2)
+        character = rotor!(t,r1)
+        res *= character
     end
     return res
 end
 
-function rotor!(text,r)
-    res = ""
-    splited_list  = split(text,"")
-    for i in splited_list
-        index = findfirst(i,r)
-        res *= alphabet[index]
-    end
-    return res
+
+function test()
+    println("ab  :  $alphabet")
+    println("r1  :  $r1")
+    println("r2  :  $r2")
+    println("r3  :  $r3")
 end
 
-function step1(text)
-    t1 = rotor(text,r1)
-    t2 = rotor(t1,r2)
-    t3 = rotor(t2,r3)
-    return t3
-end
-function inverse(text)
-    res = ""
-    splited_list  = split(text,"")
-    for i in splited_list
-        index = findfirst(i,alphabet)
-        res *= alphabet[end-index+1]
-    end
-    return res
-end
+test()
+t = enigma("helloworld",r1,r2,r3)
+println(t)
 
-function step2(text)
-    t1 = rotor!(text,r1)
-    t2 = rotor!(t1,r2)
-    t3 = rotor!(t2,r3)
-    return t3
-end
-
-
-
+println(enigma(t,r1,r2,r3))
 
