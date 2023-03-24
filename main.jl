@@ -11,7 +11,7 @@ function rotor(text,r)
     res = ""
     splited_list  = split(text,"")
     for i in splited_list
-        index = findfirst(x->x==i,alphabet)
+        index = findfirst(i,alphabet)
         res *= r[index]
     end
     return res
@@ -21,7 +21,7 @@ function rotor!(text,r)
     res = ""
     splited_list  = split(text,"")
     for i in splited_list
-        index = findfirst(x->x==i,r)
+        index = findfirst(i,r)
         res *= alphabet[index]
     end
     return res
@@ -37,7 +37,7 @@ function inverse(text)
     res = ""
     splited_list  = split(text,"")
     for i in splited_list
-        index = findfirst(x->x==i,alphabet)
+        index = findfirst(i,alphabet)
         res *= alphabet[end-index+1]
     end
     return res
@@ -49,6 +49,7 @@ function step2(text)
     t3 = rotor!(t2,r3)
     return t3
 end
+
 
 
 
