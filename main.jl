@@ -1,11 +1,11 @@
-using Shuffle
-run(`clear`)
 alphabet = "abcdefghijklmnopqrstuvwxyz"
-length(alphabet)
 
-r1 = join(shuffle(alphabet),"") # first rotor
-r2 = join(shuffle(alphabet),"") # second rotor
-r3 = join(shuffle(alphabet),"") # 3th rotor
+rotors = read("rotors.enigma",String)
+rotor1,rotor2,rotor3 = split(rotors,",")
+
+rotor1 = Dict(alphabet[i]=>rotor1[i] for i in 1:length(alphabet))
+rotor2 = Dict(alphabet[i]=>rotor2[i] for i in 1:length(alphabet))
+rotor3 = Dict(alphabet[i]=>rotor3[i] for i in 1:length(alphabet))
 
 
 function rotor(t,r) # apply rotor
