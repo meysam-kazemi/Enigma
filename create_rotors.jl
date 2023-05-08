@@ -2,7 +2,7 @@ import Shuffle , Random
 Random.seed!(1234);
 
 
-alphabet = "abcdefghigklmnopqrstuvwxyz "
+alphabet = "abcdefghijklmnopqrstuvwxyz "
 
 rotor1 = join(Shuffle.shuffle(alphabet),"")
 
