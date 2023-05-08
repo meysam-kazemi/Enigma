@@ -27,18 +27,18 @@ function Enigma(text)
         ref_c2 = alphabet[findfirst(ref_c3,rotor2)] #  Apply the reverse of rotor2 to c
         ref_c1 = alphabet[findfirst(ref_c2,rotor1)] #  Apply the reverse of rotor1 to c
         res = res * ref_c1 # Add the obtained characet to res
-        # rotor1 = Rotate_rotor(rotor1)
-        # if (step % 6) == 0 
-        #     rotor2 = Rotate_rotor(rotor2)
-        # elseif (step % 6^2) == 0
-        #     rotor3 = Rotate_rotor(rotor3)
-        # end
-        # step += 1
+        rotor1 = Rotate_rotor(rotor1)
+        if (step % len_alphabet) == 0 
+            rotor2 = Rotate_rotor(rotor2)
+        elseif (step % len_alphabet^2) == 0
+            rotor3 = Rotate_rotor(rotor3)
+        end
+        step += 1
     end
     return res
 end
 
 
-t = Enigma("hello world")
-println(Enigma(t))
+t = Enigma("meysam kazemi")
+println(t)
 
